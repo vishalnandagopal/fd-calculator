@@ -1,7 +1,7 @@
 function getValuesAndCalculate() {
-    const principle = parseFloat(document.getElementById("principle").value);
-    const interest_rate = parseFloat(document.getElementById("interest_rate").value);
-    const time = parseFloat(document.getElementById("time").value);
+    const principle = parseFloat(document.getElementById("principle").value.replace(",", ""));
+    const interest_rate = parseFloat(document.getElementById("interest_rate").value.replace(",", ""));
+    const time = parseFloat(document.getElementById("time").value.replace(",", ""));
     const time_unit = document.getElementById("time-units").value;
     const compounding = parseInt(document.getElementById("compounding").value);
     const maturity_amount = calculate(principle, interest_rate, time, time_unit, compounding);
@@ -9,7 +9,7 @@ function getValuesAndCalculate() {
     if (isNaN(maturity_amount)) {
         document.getElementById("answer").innerHTML = "Please enter the correct values in the form.";
     } else {
-        document.getElementById("answer").innerHTML = `Your total maturity amount is <span>${Math.round(maturity_amount * 100) / 100}</span>.`;
+        document.getElementById("answer").innerHTML = `Your total maturity amount is <span>${(Math.round(maturity_amount * 100) / 100).toLocaleString()}</span>.`;
     }
 }
 
