@@ -1,0 +1,193 @@
+body {
+    color: #ededed;
+    padding: 0.25rem;
+    min-height: 100dvh;
+    font-family: system-ui, -apple-system, segoe ui, Roboto, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    background-color: #161616;
+}
+
+a {
+    color: #ededed;
+    display: inline-block;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+main,
+footer {
+    margin-top: 1rem;
+    width: 85%;
+}
+
+@media screen and (min-width: 48rem) {
+    header,
+    main,
+    footer {
+        width: 82%;
+    }
+
+    body {
+        padding: 0.3rem;
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    header,
+    main,
+    footer {
+        width: 62%;
+    }
+
+    body {
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (min-width: 80rem) {
+    header,
+    main,
+    footer {
+        width: 50%;
+    }
+
+    body {
+        padding: 1.25rem;
+    }
+
+    form {
+        width: 30%;
+    }
+}
+
+main {
+    flex: 1;
+}
+
+.center {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0.2rem;
+}
+
+footer a {
+    color: #95c5fe;
+}
+
+@media screen and (prefers-color-scheme: light) {
+    body {
+        color: initial;
+    }
+
+    footer a,
+    a {
+        color: black;
+    }
+
+    .active-section {
+        border-color: black;
+    }
+}
+
+.name > a {
+    text-decoration: none;
+}
+
+form {
+    width: 100%;
+}
+
+#fd-form > div {
+    display: flex;
+    margin: 1rem 0rem 1rem 0rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    width: 40%;
+}
+
+.input-div {
+    background-color: #95c5fe;
+    font-size: 1.3rem;
+    height: min-content;
+}
+.common-input {
+    border-radius: 0.3rem;
+    text-align: center;
+    appearance: textfield;
+    background-color: #95c5fe;
+    border-color: #95c5fe;
+    font-size: 1.3rem;
+    border: 0rem;
+}
+input {
+    height: 2rem;
+    width: 10rem;
+    padding: 0.2rem;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 9rem;
+    padding: 1.5rem;
+}
+
+select {
+    width: 5rem;
+    min-width: min-content;
+    margin: 0.2rem;
+    min-height: 2rem;
+}
+
+#time-input-div {
+    display: flex;
+}
+
+#time-input-div div {
+    margin: 0.2rem;
+}
+
+#time,
+#interest_rate {
+    width: 4rem;
+    text-align: right;
+}
+
+#principle {
+    width: 6rem;
+    text-align: right;
+}
+
+#button-div {
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
+}
+
+.unit-beside-input-box {
+    margin: 0.5rem;
+    height: 2rem;
+    color: black;
+}
