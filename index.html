@@ -3,25 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A simple website for calculating ROI on your FD investments" />
+        <meta name="description" content="A simple website for calculating ROI on your all your investments (FDs, Mutual Funds, etc)" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <link rel="canonical" href="https://vishalnandagopal.com/fd-calculator/" />
+        <link rel="canonical" href="https://vishalnandagopal.com/roi-calculator/" />
 
-        <title>FD Calculator</title>
+        <title>ROI Calculator - Calculate return on FDs, Mutual Funds and other investments</title>
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://vishalnandagopal.com/fd-calculator/" />
+        <meta property="og:url" content="https://vishalnandagopal.com/roi-calculator/" />
         <meta property="og:title" content="FD Calculator" />
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="./fd-calculator.css" />
-
-        <!-- Scripts -->
-        <script defer src="./fd-calculator.js"></script>
+        <link rel="stylesheet" href="/assets/css/roi-calculator.css" />
 
         <!-- Favicon -->
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/assets/images/logo.png" type="image/svg+xml" />
 
         <!-- background color in inline css to prevent flashes when loading through college wifi (slow), and to prevent weird scaling down of svgs because width isn't set-->
         <style>
@@ -40,11 +37,9 @@
     <body>
         <!-- Header begins -->
         <header>
-            <div>
-                <h1 class="name">
-                    <a href="/">FD Returns Calculator</a>
-                </h1>
-            </div>
+            <h1 class="name">
+                <a href="/">ROI Calculator</a>
+            </h1>
         </header>
 
         <!-- Main body begins -->
@@ -92,21 +87,69 @@
                         </div>
                     </div>
                     <div id="button-div">
-                        <button class="common-input" onclick="getValuesAndCalculate()" type="button">Submit</button>
+                        <div>
+                            <button onclick="getValuesAndCalculate()" type="button">Submit</button>
+                        </div>
                     </div>
                 </form>
             </section>
-            <section id="answer-section" style="display: none">
-                <div>
-                    <p id="answer"></p>
+            <section style="display: none" id="answer-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Invested Amount</th>
+                            <th>Interest</th>
+                            <th>Total value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="invested-amount"></td>
+                            <td id="interest"></td>
+                            <td id="total"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="answer"></p>
+                <div id="chart-divs">
+                    <div class="chart-div">
+                        <canvas id="canvas-for-pie-chart"></canvas>
+                    </div>
+                    <div class="chart-div">
+                        <canvas id="canvas-for-line-chart"></canvas>
+                    </div>
                 </div>
+            </section>
+            <section id="faq">
+                <h2>FAQs</h2>
+                <details>
+                    <summary>
+                        I know the <a href="https://en.wikipedia.org/wiki/Compound_annual_growth_rate"><abbr title="Compounded Annual Growth Rate">CAGR</abbr></a> of my investment. What compounding period should I select in the calculator?
+                    </summary>
+                    Yearly
+                </details>
             </section>
         </main>
 
         <!-- Footer begins  -->
         <footer>
+            <div>
+                <!-- Scripts -->
+                <script defer src="/assets/js/roi-calculator.js"></script>
+                <!-- Using Chart.js from https://www.chartjs.org/ for creating charts -->
+                <script defer src="/assets/js/chart.umd.js" integrity="sha256-5dsP1lVzcWPn5aOwu+zs+G+TqAu9oT8NUNM0C4n3H+4="></script>
+                <script defer src="/assets/js/chartjs-plugin-datalabels.js" integrity="sha256-IMCPPZxtLvdt9tam8RJ8ABMzn+Mq3SQiInbDmMYwjDg="></script>
+            </div>
             <p>Made with ❤️ by <a href="https://vishalnandagopal.com">Vishal</a>.</p>
-            <p><a href="https://github.com/vishalnandagopal/fd-calculator">Source</a>. Copyright © 2023</p>
+            <p><a href="https://github.com/vishalnandagopal/roi-calculator">Source</a>. Copyright © 2023</p>
+            <section id="logo">
+                <!-- Image generated by OpenAI's Dall-E -->
+                <img
+                    alt="Logo for the website. A monkey wearing sunglasses, looking at two computer monitors, which are both placed side-by-side on a table. He is holding the computer mouse in one hand, and a pen his other hand. The hand is placed next to a notebook."
+                    src="/assets/images/logo.png"
+                    title="Image generated by Dall-E"
+                />
+            </section>
         </footer>
     </body>
 </html>
