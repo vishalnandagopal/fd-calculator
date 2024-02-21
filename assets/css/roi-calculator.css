@@ -70,6 +70,25 @@ footer a {
     text-decoration: none;
 }
 
+#answer-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    table {
+        width: 70vw;
+        margin: auto;
+        border: 0.125rem solid white;
+        border-collapse: collapse;
+        td {
+            border: 0.125rem solid white;
+            text-align: center;
+            vertical-align: center;
+            padding: 0.5rem;
+        }
+    }
+}
+
 form {
     width: 100%;
 }
@@ -159,7 +178,7 @@ select {
     color: black;
 }
 
-#chart-divs {
+#chart-and-table {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,13 +188,12 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 0vh;
     background-color: #ffffff;
-    margin: 1rem;
-    & canvas {
-        height: 0vh;
-    }
+    margin: 0.5rem;
+}
+
+#pie-chart {
+    height: 100%;
 }
 
 details {
@@ -226,8 +244,14 @@ details[open] {
         padding: 0.3rem;
     }
 
-    .chart-div {
-        width: 50%;
+    #answer-section {
+        table {
+            width: 30rem;
+        }
+    }
+
+    #chart-and-table {
+        flex-direction: row;
     }
 }
 

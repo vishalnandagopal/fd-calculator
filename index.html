@@ -47,21 +47,27 @@
             <section id="calculator">
                 <form id="fd-form">
                     <div>
-                        <label for="principle"><p>Enter your initial investment:</p></label>
+                        <label for="principle">
+                            <p>Enter your initial investment:</p>
+                        </label>
                         <div class="input-div">
                             <span class="unit-beside-input-box">₹</span>
                             <input class="common-input" id="principle" name="principle" placeholder="10000" type="number" min="0" />
                         </div>
                     </div>
                     <div>
-                        <label for="interest_rate"><p>Rate of interest per annum</p></label>
+                        <label for="interest_rate">
+                            <p>Rate of interest per annum / CAGR</p>
+                        </label>
                         <div class="input-div">
                             <input class="common-input" id="interest_rate" name="interest_rate" placeholder="6.5" type="number" min="0" />
                             <span class="unit-beside-input-box">%</span>
                         </div>
                     </div>
                     <div>
-                        <label for="time"><p>Time till maturity</p></label>
+                        <label for="time">
+                            <p>Time till maturity</p>
+                        </label>
                         <div id="time-input-div">
                             <div class="input-div">
                                 <input class="common-input" id="time" name="time" placeholder="5" type="number" min="0" />
@@ -76,7 +82,9 @@
                         </div>
                     </div>
                     <div>
-                        <label for="compounding"><p>Compuding frequence</p></label>
+                        <label for="compounding">
+                            <p>Compuding frequence</p>
+                        </label>
                         <div class="input-div">
                             <select class="common-input" id="compounding" name="compounding">
                                 <option value="365" selected>Yearly</option>
@@ -93,30 +101,29 @@
                     </div>
                 </form>
             </section>
-            <section style="display: none" id="answer-section">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Invested Amount</th>
-                            <th>Interest</th>
-                            <th>Total value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="invested-amount"></td>
-                            <td id="interest"></td>
-                            <td id="total"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p id="answer"></p>
-                <div id="chart-divs">
-                    <div class="chart-div">
-                        <canvas id="canvas-for-pie-chart"></canvas>
-                    </div>
-                    <div class="chart-div">
-                        <canvas id="canvas-for-line-chart"></canvas>
+            <section>
+                <p id="error"></p>
+                <div id="answer-section" style="display: none">
+                    <div id="chart-and-table">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Invested Amount</td>
+                                    <td id="invested-amount"></td>
+                                </tr>
+                                <tr>
+                                    <td>Returns earned</td>
+                                    <td id="returns"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total value</td>
+                                    <td id="total"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="pie-chart" class="chart-div">
+                            <canvas id="canvas-for-pie-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -138,10 +145,8 @@
                 <script defer src="./assets/js/roi-calculator.js"></script>
                 <!-- Using Chart.js from https://www.chartjs.org/ for creating charts -->
                 <script defer src="./assets/js/chart.umd.js" integrity="sha256-5dsP1lVzcWPn5aOwu+zs+G+TqAu9oT8NUNM0C4n3H+4="></script>
-                <script defer src="./assets/js/chartjs-plugin-datalabels.js" integrity="sha256-IMCPPZxtLvdt9tam8RJ8ABMzn+Mq3SQiInbDmMYwjDg="></script>
             </div>
-            <p>Made with ❤️ by <a href="https://vishalnandagopal.com">Vishal</a>.</p>
-            <p><a href="https://github.com/vishalnandagopal/roi-calculator">Source</a>. Copyright © 2023</p>
+
             <section id="logo">
                 <!-- Image generated by OpenAI's Dall-E -->
                 <img
@@ -150,6 +155,8 @@
                     title="Image generated by Dall-E"
                 />
             </section>
+            <p>Made with ❤️ by <a href="https://vishalnandagopal.com">Vishal</a>.</p>
+            <p><a href="https://github.com/vishalnandagopal/roi-calculator">Source</a>. Copyright © 2023</p>
         </footer>
     </body>
 </html>

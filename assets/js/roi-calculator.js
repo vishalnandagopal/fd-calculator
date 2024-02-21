@@ -1,23 +1,22 @@
 function getValuesAndCalculate() {
     const principle = parseFloat(document.getElementById("principle").value.replace(",", ""));
-    const interest_rate = parseFloat(document.getElementById("interest_rate").value.replace(",", ""));
+    const interest_rate = parseFloat(document.getElementById("interest_rate").value.replace(",", "").replace("%", ""));
     const time = parseFloat(document.getElementById("time").value.replace(",", ""));
     const time_unit = document.getElementById("time-units").value;
     const compounding = parseInt(document.getElementById("compounding").value);
     const maturity_values_at_end_of_each_period = calculate(principle, interest_rate, time, time_unit, compounding);
 
     maturity_amount = maturity_values_at_end_of_each_period.pop();
-
-    document.getElementById("answer-section").style.display = "initial";
-
-    if (isNaN(maturity_amount) && maturity_amount != principle) {
-        document.getElementById("answer").innerHTML = 'Please enter the valid values in the form. If issue persists, open a bug report by clicking the "Source" link below';
+    if (isNaN(maturity_amount) || maturity_amount == principle) {
+        document.getElementById("error").innerHTML = 'Please enter the valid values in the form. If issue persists, open a bug report by clicking the "Source" link below';
     } else {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("answer-section").style.display = "flex";
         rounded_maturity_amount = Math.round(maturity_amount * 100) / 100;
 
-        document.getElementById("invested-amount").innerText = maturity_values_at_end_of_each_period[0];
-        document.getElementById("interest").innerText = rounded_maturity_amount - maturity_values_at_end_of_each_period[0];
-        document.getElementById("total").innerText = rounded_maturity_amount;
+        document.getElementById("invested-amount").innerText = (Math.round(maturity_values_at_end_of_each_period[0] * 100) / 100).toLocaleString();
+        document.getElementById("returns").innerText = (Math.round((rounded_maturity_amount - maturity_values_at_end_of_each_period[0]) * 100) / 100).toLocaleString();
+        document.getElementById("total").innerText = rounded_maturity_amount.toLocaleString();
 
         maturity_values_at_end_of_each_period.push(rounded_maturity_amount);
 
@@ -58,53 +57,13 @@ function calculate_interest(principle, interest_rate, days) {
 }
 
 function createCharts(maturity_values_at_end_of_each_period) {
-    Chart.register(ChartDataLabels);
-
-    createLineChart(maturity_values_at_end_of_each_period);
+    // Chart.register(ChartDataLabels);
     createPieChart(maturity_values_at_end_of_each_period);
-
-    let chart_canvases = document.querySelectorAll(".chart-div");
-
-    for (i = 0; i < chart_canvases.length; i++) {
-        chart_canvases[i].style.height = "40vh";
-    }
-}
-
-function createLineChart(maturity_values_at_end_of_each_period) {
-    let labels_for_line_chart = [];
-    const length = maturity_values_at_end_of_each_period.length;
-    for (var i = 1; i <= length; i++) {
-        labels_for_line_chart.push(i.toString());
-    }
-
-    // Creating line chart
-    ((maturity_values_at_end_of_each_period) => {
-        // checking if it already exists
-
-        Chart.getChart("canvas-for-line-chart") ? Chart.getChart("canvas-for-line-chart").destroy() : (show_animation = false);
-
-        let canvas = document.getElementById("canvas-for-line-chart");
-        chart = new Chart(canvas, {
-            type: "line",
-            data: {
-                labels: labels_for_line_chart,
-                datasets: [
-                    {
-                        data: maturity_values_at_end_of_each_period,
-                        borderColor: "rgb(75, 192, 192)",
-                        tension: 0.1,
-                    },
-                ],
-            },
-            options: { animation: show_animation },
-        });
-        chart.canvas.parentNode.style.height = "30vh";
-        chart.canvas.parentNode.style.width = "60vw";
-    })(maturity_values_at_end_of_each_period.map((x) => Math.round(x * 100) / 10));
 }
 
 function createPieChart(maturity_values_at_end_of_each_period) {
     // Creating pie chart
+    const returns = maturity_values_at_end_of_each_period.pop() - maturity_values_at_end_of_each_period[0];
     ((dataset) => {
         // checking if it already exists
         show_animation = true;
@@ -115,7 +74,7 @@ function createPieChart(maturity_values_at_end_of_each_period) {
         chart = new Chart(canvas, {
             type: "doughnut",
             data: {
-                labels: ["Principle", "Interest"],
+                labels: ["Principle", "Returns"],
                 datasets: [
                     {
                         data: dataset,
@@ -125,10 +84,10 @@ function createPieChart(maturity_values_at_end_of_each_period) {
                 ],
             },
             options: {
-                tooltips: {
-                    enabled: false,
-                },
                 plugins: {
+                    tooltips: {
+                        enabled: false,
+                    },
                     datalabels: {
                         formatter: (value) => {
                             let sum = 0;
@@ -146,6 +105,6 @@ function createPieChart(maturity_values_at_end_of_each_period) {
             },
         });
 
-        chart.canvas.parentNode.style.height = "60vh";
-    })([maturity_values_at_end_of_each_period[0], maturity_values_at_end_of_each_period.pop()]);
+        // chart.canvas.parentNode.style.height = "60vh";
+    })([maturity_values_at_end_of_each_period[0], returns]);
 }
